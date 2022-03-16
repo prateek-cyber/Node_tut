@@ -1,18 +1,8 @@
-// Demonstration of promise
-//When we need the data of a process which takes more time to execute in the next code 
-// we use promise to get that data because node dosen't wait for a process taking long time
+// call stack -> Node API -> callback queue
 
-
-let a = 20;
-let b = 0;
-let waitingData = new Promise((resolve,reject)=>{
-    setTimeout(()=>{
-       resolve(30);
-},2000)
-     
-})
-
-waitingData.then((data)=>{
-    console.log(a + data);
-})
-console.log("End");
+// functions which are called are stored in call stack.(Just like a regular stack). 
+// functions that are derived from other languages i.e other than javascript, like c, c++
+// are stored in node API. Example of these function are settimeout. These functions are sent 
+// from Node Api to callback queue where it waits until all the functions in the call stack 
+// finish executing. after that these are executed. They are brought to callback queue in 
+// ascending order of their execution time.
