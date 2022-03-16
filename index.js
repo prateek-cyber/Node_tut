@@ -1,36 +1,18 @@
-const fs = require('fs');
-const path = require('path');
-
-const dirpath = path.join(__dirname,'crud');
-const filepath = dirpath+"/hello.txt";
-
-//creating file
-// fs.writeFileSync(dirpath+"/hello.txt",'Hello file')
-
-//Reading the file
-
-// fs.readFile(filepath,'utf8',(err,file)=>{
-//     console.log(file);
-
-// })
-
-//Adding data to the file
+// Demonstration of promise
+//When we need the data of a process which takes more time to execute in the next code 
+// we use promise to get that data because node dosen't wait for a process taking long time
 
 
-// fs.appendFile(filepath,' And file name is hello.txt',err=>{
-//     if(!err){
-//         console.log("File is updated");
-//     }
-// });
+let a = 20;
+let b = 0;
+let waitingData = new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+       resolve(30);
+},2000)
+     
+})
 
-// Renaming the file
-
-// fs.rename(filepath,dirpath+"/apple.txt",(err)=>{
-//     if(!err){
-//         console.log("File renamed succesfully");
-//     }
-// })
-
-//Deleting the file
-
-// fs.unlinkSync(dirpath+"/apple.txt");
+waitingData.then((data)=>{
+    console.log(a + data);
+})
+console.log("End");
