@@ -19,7 +19,7 @@ app.get('',(req,resp)=>{
   resp.sendFile(`${publicPath}/index.html`)// By this no need to use .html to access pages from web
 })
 app.get('*',(req,resp)=>{
-  resp.sendFile(`${publicPath}/error.html`)// By this no need to use .html to access pages from web
+  resp.sendFile(`${publicPath}/error.html`)// if a non existing page is accessed then this is executed
 })
 
 
