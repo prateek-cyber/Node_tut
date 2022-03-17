@@ -1,8 +1,26 @@
-// call stack -> Node API -> callback queue
+const express = require('express');
+const path = require('path')
+const app = express();
 
-// functions which are called are stored in call stack.(Just like a regular stack). 
-// functions that are derived from other languages i.e other than javascript, like c, c++
-// are stored in node API. Example of these function are settimeout. These functions are sent 
-// from Node Api to callback queue where it waits until all the functions in the call stack 
-// finish executing. after that these are executed. They are brought to callback queue in 
-// ascending order of their execution time.
+// app.get('',(req,res)=>{
+//     // console.log("Data sent by browser", req.query.name);
+//     res.send("Welcome to home page "+req.query.name);
+// })
+
+app.get('/about',(req,res)=>{
+    res.send(`
+      <input type = "text" placeholder = "username" value=${req.query.name}>
+    `)
+    res.send("Hello this is about our page");
+})
+const publicPath = path.join(__dirname,"/public");
+// app.use(express.static(publicPath));
+app.get('',(req,resp)=>{
+  resp.sendFile(`${publicPath}/index.html`)// By this no need to use .html to access pages from web
+})
+app.get('*',(req,resp)=>{
+  resp.sendFile(`${publicPath}/error.html`)// By this no need to use .html to access pages from web
+})
+
+
+app.listen(4500);
