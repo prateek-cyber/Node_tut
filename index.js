@@ -15,6 +15,18 @@ app.get('/about',(req,res)=>{
 })
 const publicPath = path.join(__dirname,"/public");
 // app.use(express.static(publicPath));
+
+app.set('view engine','ejs');
+
+const user = {
+  name:"prateek",
+  email:"prateek@gmail.com",
+  skills:['cpp','java','node']
+}
+app.get('/profile', (req,resp)=>{
+  
+  resp.render('profile',{user});
+})
 app.get('',(req,resp)=>{
   resp.sendFile(`${publicPath}/index.html`)// By this no need to use .html to access pages from web
 })
